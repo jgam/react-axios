@@ -3,11 +3,25 @@ import axios from 'axios';
  
 const App = () => {
   const [data, setData] = useState(null);
+  //original version
+  /*
   const onClick = () => {
     axios.get('https://jsonplaceholder.typicode.com/todos/1').then(response => {
       setData(response.data);
     });
   };
+  */
+
+  //async?
+  const onClick = async () => {
+    try{
+      var res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+      setData(res.data);
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
   return (
     <div>
       <div>
