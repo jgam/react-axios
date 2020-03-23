@@ -18,9 +18,12 @@ const NewsList = ({ category }) => {
       try {
         //some axios call
         //here u define categories from parent component that is received from
-
+        const query = category === 'all' ? '' : `&category=${category}`;
+        console.log('query is ');
+        console.log(query);
         const response = await axios.get(
-          'https://newsapi.org/v2/top-headlines?country=kr&apiKey=0a8c4202385d4ec1bb93b7e277b3c51f',
+          'https://newsapi.org/v2/top-headlines?country=kr&apiKey=0a8c4202385d4ec1bb93b7e277b3c51f' +
+            query,
         );
         console.log('even slower than state changes?');
         console.log(response.data.articles);
@@ -33,7 +36,7 @@ const NewsList = ({ category }) => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [category]);
 
   //when loading
   if (loading) {
